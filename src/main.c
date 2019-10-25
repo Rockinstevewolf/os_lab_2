@@ -4,7 +4,6 @@
 #include <sys/types.h> 
 #include <sys/wait.h>
 #include <string.h>
-//#include "CException.h>"
 
 int fact(int a){
     if(a!=1){
@@ -43,7 +42,6 @@ int main()
 {
     int flag = 1;
     int sol = 0;
-    int int_input = 0;
     int input;
     printf("1. Чтобы вычислить сумму от 1 до n введите число\n");
     printf("2. Чтобы завершить программу, введите '0'\n");
