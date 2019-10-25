@@ -1,5 +1,5 @@
 # OS_lab_2
-## Variant 03: Reсursion summ from 1 to n integers with the help of fork and pipe.
+## Variant 03: Reсursion summ from 1 to n integers.
 in bash:
 - "cmake cmakelists.txt"
 - "make"
