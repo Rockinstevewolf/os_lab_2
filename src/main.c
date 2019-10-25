@@ -3,9 +3,8 @@
 #include <unistd.h> 
 #include <sys/types.h> 
 #include <sys/wait.h>
-
-#include <iostream> 
-using namespace std;
+#include <string.h>
+//#include "CException.h>"
 
 int fact(int a){
     if(a!=1){
@@ -42,31 +41,26 @@ int fact(int a){
 
 int main()
 {
-    bool flag = true;
+    int flag = 1;
     int sol = 0;
     int int_input = 0;
-    string input;
-    cout << "1. Чтобы вычислить сумму от 1 до n введите число" << endl;
-    cout << "2. Чтобы завершить программу, введите 'q'" << endl;
+    int input;
+    printf("1. Чтобы вычислить сумму от 1 до n введите число\n");
+    printf("2. Чтобы завершить программу, введите '0'\n");
     while(flag){
-        cout << "> ";
-        cin >> input;
-        if(input.compare("q")==0){
-            flag = false;
+        printf("> ");
+        scanf("%d", &input);
+        if(input == 0){
+            flag = 0;
+            printf("Выход из программы...\n");
         }
-        else if(!flag)
-            cout << "Выход из программы...";
         else{
-            try{
-                int_input = stoi(input);
-                if(int_input > 0)
-                    sol = fact(stoi(input));
-                else if(int_input == 0)
-                    sol = 1;
-                cout << "Итоговая сумма = " << sol << endl;
-            }catch(...){
-                cout << "Ошибка, введено некорректное число!" << endl;
+            if(input < 0)
+            	printf("Ошибка, введено некорректное число!\n");
+            else if(input > 0){
+                sol = fact(input);
+                printf("Итоговая сумма = %d\n", sol);
             }
-        }    
+        }
     }
 }
