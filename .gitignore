@@ -10,4 +10,7 @@ CTestTestfile.cmake
 executable
 *.c
 !main.c
+!itoa.c
 *.out
+*.a
+*.so
