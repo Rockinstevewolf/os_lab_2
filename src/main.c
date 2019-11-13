@@ -5,7 +5,7 @@
 #include <stdbool.h>
 #include "itoa.h"
 
-int fact(int a){
+int sum(int a){
     if(a!=1){
         pid_t pid;
         int pipe_1[2], pipe_2[2], res=0, buff_a = a-1;
@@ -18,7 +18,9 @@ int fact(int a){
             close(pipe_1[0]);
             write(pipe_1[1], &buff_a, sizeof(buff_a));
             close(pipe_1[1]);
-            wait(0);
+            int status;
+            wait(&status);
+            printf(">>%i\n", WEXITSTATUS(status));
             close(pipe_2[1]);
             read(pipe_2[0], &res, sizeof(res));
             close(pipe_2[0]);
@@ -33,11 +35,11 @@ int fact(int a){
             close(pipe_1[1]);
             read(pipe_1[0], &get, sizeof(get));
             close(pipe_1[0]);
-            get = fact(get);
+            get = sum(get);
             close(pipe_2[0]);
             write(pipe_2[1], &get, sizeof(get));
             close(pipe_2[1]);
-            exit(0);
+            exit(42);
         }
     }
     else
@@ -68,10 +70,10 @@ int main()
             if(input < 0)
             	write(STDOUT_FILENO, "Ошибка, введено некорректное число!\n", sizeof "Ошибка, введено некорректное число!\n" - 1);
             else if(input > 0){
-                sol = fact(input);
+                sol = sum(input);
                 sol_str_len = itoa(sol, sol_str);
                 write(STDOUT_FILENO, "Итоговая сумма = ", sizeof "Итоговая сумма = " - 1);
-            	write(STDOUT_FILENO, sol_str, sol_str_len);
+            	write(STDOUT_FILENO, sol_str, sol_str_len - 1);
                 write(STDOUT_FILENO, "\n", sizeof "\n" - 1);
             }
         }
